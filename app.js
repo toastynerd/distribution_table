@@ -5,11 +5,11 @@ $(function() {
   resultsTable = $('#results');
   var addRow = function(data) {
     resultsTable.append(`
-      <tr>
-        <th>${data.state}</th>
-        <th>${data.brand}</th>
-        <th>${data.distributor}</th>
-      </tr>
+      <li>
+        <span>${data.state}</span>
+        <span>${data.brand}</span>
+        <span>${data.distributor}</span>
+      </li>
     `);
   }
 
@@ -29,6 +29,9 @@ $(function() {
   var brandForm = $('#brand');
   var statesForm = $('#state');
   var distForm = $('#distributor');
+  states.sort();
+  allBrands.sort();
+  allDist.sort();
   states.forEach(function(state) {
     statesForm.append(`<option value="${state}">${state}</option>`);
   });
@@ -42,7 +45,7 @@ $(function() {
   });
 
   var handleChange = function() {
-    resultsTable.children('tr').remove();
+    resultsTable.children('li').remove();
     var state = statesForm.children("option:selected").val();
     var brand = brandForm.children("option:selected").val();
     var dist = distForm.children("option:selected").val();
